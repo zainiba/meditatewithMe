@@ -1,7 +1,18 @@
 html, body {
-  margin: 0;
-  padding: 0;
+  margin: 10;
 }
 canvas {
   display: block;
+
+}
+body {
+  margin: 10;
+  font: 15px Arial, sans-serif;
+
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
 }
