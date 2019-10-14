@@ -9,10 +9,10 @@ function preload() {
 
 function setup() {
 
-  var cnv = createCanvas(800, 800);
+  var cnv = createCanvas(700, 700);
   cnv.position(windowWidth / 3.4, windowHeight/20);
-  pg = createGraphics(800, 800);
-  image(img, 0, 0, 800, 800);
+  pg = createGraphics(700, 700);
+  image(img, 0, 0, 700, 700);
 
   // background(200);
 }
@@ -21,7 +21,7 @@ function draw() {
   pg.strokeWeight(strokeWidth);
   //practicing rotating image
 
-  image(pg, 0,0, 800, 800);
+  image(pg, 0,0, 700, 700);
 
 if (key === 'd') {
   background(5);
@@ -32,7 +32,7 @@ if (key === 'd') {
    translate(width/2, height/2);
    rotate(rot);
    scale(1);
-   image(img, 0, 0, 800, 800);
+   image(img, 0, 0, 700, 700);
    image(pg, 0,0);
    rot = rot + 0.01;
    pop();
