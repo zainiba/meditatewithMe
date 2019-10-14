@@ -10,7 +10,7 @@ function preload() {
 function setup() {
 
   var cnv = createCanvas(800, 800);
-  cnv.position(windowWidth / 3.4, 50);
+  cnv.position(windowWidth / 3.4, windowHeight/10);
   pg = createGraphics(800, 800);
   image(img, 0, 0, 800, 800);
 
