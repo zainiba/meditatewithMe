@@ -2,41 +2,49 @@
 //maybe have no mandala outline - user creates kaliedescope designs that spins
 let strokeWidth = 10;
 let rot = 0;
+let mandala = [];
+let imageCounter = 0;
 
 function preload() {
-  img = loadImage('mandala1.png');
+  for (let i = 0; i <= 2; i++) {
+    mandala[i] = loadImage(`mandala/mandala (${i}).png`)
+  }
 }
 
+// function preload() {
+//   img = loadImage('mandala/mandala3.png');
+// }
+
 function setup() {
-
+  console.log(mandala);
   var cnv = createCanvas(650, 650);
-  cnv.position(windowWidth / 3.4, windowHeight/20);
+  cnv.position(windowWidth / 3.4, windowHeight / 20);
   pg = createGraphics(650, 650);
-  image(img, 0, 0, 650, 650);
-
+buttonPressed();
   // background(200);
+
+  button = select('#newMan')
+  button.mousePressed(buttonPressed);
 }
 
 function draw() {
   pg.strokeWeight(strokeWidth);
   //practicing rotating image
+  image(pg, 0, 0, 650, 650);
 
-  image(pg, 0,0, 650, 650);
-
-if (key === 'd') {
-  background(5);
-
-   push();
-  clear();
-   imageMode(CENTER);
-   translate(width/2, height/2);
-   rotate(rot);
-   scale(1);
-   image(img, 0, 0, 650, 650);
-   image(pg, 0,0);
-   rot = rot + 0.01;
-   pop();
-}
+  if (key === 'd') {
+    background(5);
+    push();
+    clear();
+    imageMode(CENTER);
+    translate(width / 2, height / 2);
+    rotate(rot);
+    scale(1);
+    image(mandala[imageCounter], 0, 0, 650, 650);
+    image(pg, 0, 0);
+    rot = rot + 0.01;
+    pop();
+  }
   if (mouseIsPressed) {
     // stroke(map(mouseX, 0, 650, 0, 255, true));
     //stroke(50);
@@ -45,7 +53,16 @@ if (key === 'd') {
     pg.line(mouseY, mouseX, pmouseY, pmouseX);
     pg.line(width - mouseY, height - mouseX, width - pmouseY, height - pmouseX);
   }
+}
 
+function buttonPressed(){
+     clear();
+    image(mandala[imageCounter], 0, 0, 650, 650);
+    if (imageCounter < mandala.length - 1) {
+      imageCounter++;
+    } else {
+     imageCounter = 0;
+    }
 }
 
 function keyTyped() {
@@ -65,7 +82,7 @@ function keyTyped() {
     //orange pen
     pg.stroke(234, 124, 75)
   }
-   // else if (key === 'd') {
+  // else if (key === 'd') {
   //   //done and art spins clockwise
   //
   // }
