@@ -4,6 +4,7 @@ let strokeWidth = 10;
 let rot = 0;
 let mandala = [];
 let imageCounter = 0;
+let spinning = false;
 
 function preload() {
   for (let i = 0; i <= 2; i++) {
@@ -11,16 +12,12 @@ function preload() {
   }
 }
 
-// function preload() {
-//   img = loadImage('mandala/mandala3.png');
-// }
-
 function setup() {
   console.log(mandala);
   var cnv = createCanvas(650, 650);
   cnv.position(windowWidth / 3.4, windowHeight / 20);
   pg = createGraphics(650, 650);
-buttonPressed();
+  image(mandala[imageCounter], 0, 0, 650, 650);
   // background(200);
 
   button = select('#newMan')
@@ -32,7 +29,16 @@ function draw() {
   //practicing rotating image
   image(pg, 0, 0, 650, 650);
 
-  if (key === 'd') {
+
+  if (mouseIsPressed) {
+    // stroke(map(mouseX, 0, 650, 0, 255, true));
+    //stroke(50);
+    pg.line(mouseX, mouseY, pmouseX, pmouseY);
+    pg.line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY);
+    pg.line(mouseY, mouseX, pmouseY, pmouseX);
+    pg.line(width - mouseY, height - mouseX, width - pmouseY, height - pmouseX);
+  }
+  if (spinning) {
     background(5);
     push();
     clear();
@@ -44,25 +50,21 @@ function draw() {
     image(pg, 0, 0);
     rot = rot + 0.01;
     pop();
+    console.log(imageCounter);
   }
-  if (mouseIsPressed) {
-    // stroke(map(mouseX, 0, 650, 0, 255, true));
-    //stroke(50);
-    pg.line(mouseX, mouseY, pmouseX, pmouseY);
-    pg.line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY);
-    pg.line(mouseY, mouseX, pmouseY, pmouseX);
-    pg.line(width - mouseY, height - mouseX, width - pmouseY, height - pmouseX);
-  }
+
 }
 
 function buttonPressed(){
      clear();
-    image(mandala[imageCounter], 0, 0, 650, 650);
+     pg.clear();
+     spinning = false;
     if (imageCounter < mandala.length - 1) {
       imageCounter++;
     } else {
      imageCounter = 0;
     }
+    image(mandala[imageCounter], 0, 0, 650, 650);
 }
 
 function keyTyped() {
@@ -81,6 +83,8 @@ function keyTyped() {
   } else if (key === 'o') {
     //orange pen
     pg.stroke(234, 124, 75)
+  } else if (key === 'd') {
+    spinning=true;
   }
   // else if (key === 'd') {
   //   //done and art spins clockwise
